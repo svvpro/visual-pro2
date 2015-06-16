@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.0.16 on 2015-06-16.
+ * Generated for Laravel 5.0.33 on 2015-06-16.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -127,6 +127,17 @@ namespace {
          */
         public static function databasePath(){
             return \Illuminate\Foundation\Application::databasePath();
+        }
+        
+        /**
+         * Set the database directory.
+         *
+         * @param string $path
+         * @return $this 
+         * @static 
+         */
+        public static function useDatabasePath($path){
+            return \Illuminate\Foundation\Application::useDatabasePath($path);
         }
         
         /**
@@ -440,6 +451,47 @@ namespace {
         }
         
         /**
+         * Get the path to the cached "compiled.php" file.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getCachedCompilePath(){
+            return \Illuminate\Foundation\Application::getCachedCompilePath();
+        }
+        
+        /**
+         * Get the path to the cached services.json file.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getCachedServicesPath(){
+            return \Illuminate\Foundation\Application::getCachedServicesPath();
+        }
+        
+        /**
+         * Determine if vendor path is writable.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function vendorIsWritableForOptimizations(){
+            return \Illuminate\Foundation\Application::vendorIsWritableForOptimizations();
+        }
+        
+        /**
+         * Determines if storage directory should be used for optimizations.
+         *
+         * @param bool $value
+         * @return $this 
+         * @static 
+         */
+        public static function useStoragePathForOptimizations($value = true){
+            return \Illuminate\Foundation\Application::useStoragePathForOptimizations($value);
+        }
+        
+        /**
          * Determine if the application is currently down for maintenance.
          *
          * @return bool 
@@ -506,6 +558,16 @@ namespace {
         }
         
         /**
+         * Get the application's deferred services.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getDeferredServices(){
+            return \Illuminate\Foundation\Application::getDeferredServices();
+        }
+        
+        /**
          * Set the application's deferred services.
          *
          * @param array $services
@@ -514,6 +576,17 @@ namespace {
          */
         public static function setDeferredServices($services){
             \Illuminate\Foundation\Application::setDeferredServices($services);
+        }
+        
+        /**
+         * Add an array of services to the application's deferred services.
+         *
+         * @param array $services
+         * @return void 
+         * @static 
+         */
+        public static function addDeferredServices($services){
+            \Illuminate\Foundation\Application::addDeferredServices($services);
         }
         
         /**
@@ -1360,7 +1433,7 @@ namespace {
         }
         
         /**
-         * Return the currently cached user of the application.
+         * Return the currently cached user.
          *
          * @return \App\User|null 
          * @static 
@@ -1370,7 +1443,7 @@ namespace {
         }
         
         /**
-         * Set the current user of the application.
+         * Set the current user.
          *
          * @param \Illuminate\Contracts\Auth\Authenticatable $user
          * @return void 
@@ -1736,7 +1809,7 @@ namespace {
         }
         
         /**
-         * Register command to handler mappings.
+         * Register command-to-handler mappings.
          *
          * @param array $commands
          * @return void 
@@ -1771,7 +1844,7 @@ namespace {
         }
         
         /**
-         * Set the pipes commands should be piped through before dispatching.
+         * Set the pipes through which commands should be piped before dispatching.
          *
          * @param array $pipes
          * @return $this 
@@ -2073,7 +2146,7 @@ namespace {
         }
         
         /**
-         * Checks if macro is registered
+         * Checks if macro is registered.
          *
          * @param string $name
          * @return bool 
@@ -2387,7 +2460,7 @@ namespace {
         }
         
         /**
-         * Get the cookies which have been queued for the next request
+         * Get the cookies which have been queued for the next request.
          *
          * @return array 
          * @static 
@@ -2556,13 +2629,13 @@ namespace {
         /**
          * Find a model by its primary key.
          *
-         * @param array $id
+         * @param array $ids
          * @param array $columns
-         * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|static 
+         * @return \Illuminate\Database\Eloquent\Collection 
          * @static 
          */
-        public static function findMany($id, $columns = array()){
-            return \Illuminate\Database\Eloquent\Builder::findMany($id, $columns);
+        public static function findMany($ids, $columns = array()){
+            return \Illuminate\Database\Eloquent\Builder::findMany($ids, $columns);
         }
         
         /**
@@ -3609,11 +3682,12 @@ namespace {
         /**
          * Get the count of the total records for the paginator.
          *
+         * @param array $columns
          * @return int 
          * @static 
          */
-        public static function getCountForPagination(){
-            return \Illuminate\Database\Query\Builder::getCountForPagination();
+        public static function getCountForPagination($columns = array()){
+            return \Illuminate\Database\Query\Builder::getCountForPagination($columns);
         }
         
         /**
@@ -3653,7 +3727,7 @@ namespace {
          * Retrieve the minimum value of a given column.
          *
          * @param string $column
-         * @return mixed 
+         * @return float|int 
          * @static 
          */
         public static function min($column){
@@ -3664,7 +3738,7 @@ namespace {
          * Retrieve the maximum value of a given column.
          *
          * @param string $column
-         * @return mixed 
+         * @return float|int 
          * @static 
          */
         public static function max($column){
@@ -3675,7 +3749,7 @@ namespace {
          * Retrieve the sum of the values of a given column.
          *
          * @param string $column
-         * @return mixed 
+         * @return float|int 
          * @static 
          */
         public static function sum($column){
@@ -3686,7 +3760,7 @@ namespace {
          * Retrieve the average of the values of a given column.
          *
          * @param string $column
-         * @return mixed 
+         * @return float|int 
          * @static 
          */
         public static function avg($column){
@@ -3698,7 +3772,7 @@ namespace {
          *
          * @param string $function
          * @param array $columns
-         * @return mixed 
+         * @return float|int 
          * @static 
          */
         public static function aggregate($function, $columns = array()){
@@ -3892,7 +3966,7 @@ namespace {
         /**
          * Register an event subscriber with the dispatcher.
          *
-         * @param string $subscriber
+         * @param object|string $subscriber
          * @return void 
          * @static 
          */
@@ -4343,7 +4417,7 @@ namespace {
         }
         
         /**
-         * Checks if macro is registered
+         * Checks if macro is registered.
          *
          * @param string $name
          * @return bool 
@@ -4646,7 +4720,7 @@ namespace {
          *
          * @param string $key
          * @param mixed $default
-         * @return string 
+         * @return string|array 
          * @static 
          */
         public static function query($key = null, $default = null){
@@ -4669,7 +4743,7 @@ namespace {
          *
          * @param string $key
          * @param mixed $default
-         * @return string 
+         * @return string|array 
          * @static 
          */
         public static function cookie($key = null, $default = null){
@@ -4704,7 +4778,7 @@ namespace {
          *
          * @param string $key
          * @param mixed $default
-         * @return string 
+         * @return string|array 
          * @static 
          */
         public static function header($key = null, $default = null){
@@ -4716,7 +4790,7 @@ namespace {
          *
          * @param string $key
          * @param mixed $default
-         * @return string 
+         * @return string|array 
          * @static 
          */
         public static function server($key = null, $default = null){
@@ -5128,8 +5202,8 @@ namespace {
          * The following header keys are supported:
          * 
          *  * Request::HEADER_CLIENT_IP:    defaults to X-Forwarded-For   (see getClientIp())
-         *  * Request::HEADER_CLIENT_HOST:  defaults to X-Forwarded-Host  (see getClientHost())
-         *  * Request::HEADER_CLIENT_PORT:  defaults to X-Forwarded-Port  (see getClientPort())
+         *  * Request::HEADER_CLIENT_HOST:  defaults to X-Forwarded-Host  (see getHost())
+         *  * Request::HEADER_CLIENT_PORT:  defaults to X-Forwarded-Port  (see getPort())
          *  * Request::HEADER_CLIENT_PROTO: defaults to X-Forwarded-Proto (see getScheme() and isSecure())
          * 
          * Setting an empty value allows to disable the trusted header for the given key.
@@ -6265,7 +6339,7 @@ namespace {
          * Register an error_log handler.
          *
          * @param string $level
-         * @param integer $messageType
+         * @param int $messageType
          * @return void 
          * @static 
          */
@@ -6274,8 +6348,7 @@ namespace {
         }
         
         /**
-         * Register a new callback handler for when
-         * a log event is triggered.
+         * Register a new callback handler for when a log event is triggered.
          *
          * @param \Closure $callback
          * @return void 
@@ -6309,7 +6382,7 @@ namespace {
         /**
          * Set the event dispatcher instance.
          *
-         * @param \Illuminate\Contracts\Events\Dispatcher
+         * @param \Illuminate\Contracts\Events\Dispatcher $dispatcher
          * @return void 
          * @static 
          */
@@ -6670,6 +6743,7 @@ namespace {
          * @param mixed $data
          * @param string $queue
          * @return mixed 
+         * @throws \Exception
          * @static 
          */
         public static function push($job, $data = '', $queue = null){
@@ -6766,17 +6840,6 @@ namespace {
         public static function bulk($jobs, $data = '', $queue = null){
             //Method inherited from \Illuminate\Queue\Queue            
             return \Illuminate\Queue\SyncQueue::bulk($jobs, $data, $queue);
-        }
-        
-        /**
-         * Get the current UNIX timestamp.
-         *
-         * @return int 
-         * @static 
-         */
-        public static function getTime(){
-            //Method inherited from \Illuminate\Queue\Queue            
-            return \Illuminate\Queue\SyncQueue::getTime();
         }
         
         /**
@@ -7199,7 +7262,7 @@ namespace {
          *
          * @param string $key
          * @param mixed $default
-         * @return string 
+         * @return string|array 
          * @static 
          */
         public static function query($key = null, $default = null){
@@ -7222,7 +7285,7 @@ namespace {
          *
          * @param string $key
          * @param mixed $default
-         * @return string 
+         * @return string|array 
          * @static 
          */
         public static function cookie($key = null, $default = null){
@@ -7257,7 +7320,7 @@ namespace {
          *
          * @param string $key
          * @param mixed $default
-         * @return string 
+         * @return string|array 
          * @static 
          */
         public static function header($key = null, $default = null){
@@ -7269,7 +7332,7 @@ namespace {
          *
          * @param string $key
          * @param mixed $default
-         * @return string 
+         * @return string|array 
          * @static 
          */
         public static function server($key = null, $default = null){
@@ -7681,8 +7744,8 @@ namespace {
          * The following header keys are supported:
          * 
          *  * Request::HEADER_CLIENT_IP:    defaults to X-Forwarded-For   (see getClientIp())
-         *  * Request::HEADER_CLIENT_HOST:  defaults to X-Forwarded-Host  (see getClientHost())
-         *  * Request::HEADER_CLIENT_PORT:  defaults to X-Forwarded-Port  (see getClientPort())
+         *  * Request::HEADER_CLIENT_HOST:  defaults to X-Forwarded-Host  (see getHost())
+         *  * Request::HEADER_CLIENT_PORT:  defaults to X-Forwarded-Port  (see getPort())
          *  * Request::HEADER_CLIENT_PROTO: defaults to X-Forwarded-Proto (see getScheme() and isSecure())
          * 
          * Setting an empty value allows to disable the trusted header for the given key.
@@ -8611,7 +8674,7 @@ namespace {
         }
         
         /**
-         * Checks if macro is registered
+         * Checks if macro is registered.
          *
          * @param string $name
          * @return bool 
@@ -8980,7 +9043,7 @@ namespace {
         }
         
         /**
-         * Set a global where pattern on all routes
+         * Set a global where pattern on all routes.
          *
          * @param string $key
          * @param string $pattern
@@ -8992,7 +9055,7 @@ namespace {
         }
         
         /**
-         * Set a group of global where patterns on all routes
+         * Set a group of global where patterns on all routes.
          *
          * @param array $patterns
          * @return void 
@@ -9234,7 +9297,7 @@ namespace {
         }
         
         /**
-         * Checks if macro is registered
+         * Checks if macro is registered.
          *
          * @param string $name
          * @return bool 
@@ -10625,6 +10688,17 @@ namespace {
         }
         
         /**
+         * Check if section exists.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */
+        public static function hasSection($name){
+            return \Illuminate\View\Factory::hasSection($name);
+        }
+        
+        /**
          * Get the entire array of sections.
          *
          * @return array 
@@ -11046,7 +11120,7 @@ namespace {
         }
         
         /**
-         * Checks if macro is registered
+         * Checks if macro is registered.
          *
          * @param string $name
          * @return bool 
@@ -11288,7 +11362,7 @@ namespace {
         }
         
         /**
-         * Checks if macro is registered
+         * Checks if macro is registered.
          *
          * @param string $name
          * @return bool 
@@ -11766,6 +11840,100 @@ namespace {
             //Method inherited from \DebugBar\DebugBar            
             return \Barryvdh\Debugbar\LaravelDebugbar::offsetUnset($key);
         }
+        
+    }
+
+
+    class Admin extends \SleepingOwl\Admin\Admin{
+        
+    }
+
+
+    class AdminAuth extends \SleepingOwl\AdminAuth\Facades\AdminAuth{
+        
+        /**
+         * Create an instance of the Eloquent driver.
+         *
+         * @return \Illuminate\Auth\Guard 
+         * @static 
+         */
+        public static function createEloquentDriver(){
+            return \SleepingOwl\AdminAuth\AdminAuthManager::createEloquentDriver();
+        }
+        
+        /**
+         * Get the default authentication driver name.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getDefaultDriver(){
+            return \SleepingOwl\AdminAuth\AdminAuthManager::getDefaultDriver();
+        }
+        
+        /**
+         * Create an instance of the database driver.
+         *
+         * @return \Illuminate\Auth\Guard 
+         * @static 
+         */
+        public static function createDatabaseDriver(){
+            //Method inherited from \Illuminate\Auth\AuthManager            
+            return \SleepingOwl\AdminAuth\AdminAuthManager::createDatabaseDriver();
+        }
+        
+        /**
+         * Set the default authentication driver name.
+         *
+         * @param string $name
+         * @return void 
+         * @static 
+         */
+        public static function setDefaultDriver($name){
+            //Method inherited from \Illuminate\Auth\AuthManager            
+            \SleepingOwl\AdminAuth\AdminAuthManager::setDefaultDriver($name);
+        }
+        
+        /**
+         * Get a driver instance.
+         *
+         * @param string $driver
+         * @return mixed 
+         * @static 
+         */
+        public static function driver($driver = null){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \SleepingOwl\AdminAuth\AdminAuthManager::driver($driver);
+        }
+        
+        /**
+         * Register a custom driver creator Closure.
+         *
+         * @param string $driver
+         * @param \Closure $callback
+         * @return $this 
+         * @static 
+         */
+        public static function extend($driver, $callback){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \SleepingOwl\AdminAuth\AdminAuthManager::extend($driver, $callback);
+        }
+        
+        /**
+         * Get all of the created "drivers".
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getDrivers(){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \SleepingOwl\AdminAuth\AdminAuthManager::getDrivers();
+        }
+        
+    }
+
+
+    class Column extends \SleepingOwl\Admin\Columns\Column{
         
     }
 

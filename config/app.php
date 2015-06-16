@@ -148,6 +148,7 @@ return [
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Html\HtmlServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
+        'SleepingOwl\Admin\AdminServiceProvider',
 	],
 
 	/*
@@ -198,6 +199,15 @@ return [
         'Form'      => 'Illuminate\Html\FormFacade',
         'Html'      => 'Illuminate\Html\HtmlFacade',
         'Debugbar' => 'Barryvdh\Debugbar\Facade',
+        'Admin'         => 'SleepingOwl\Admin\Admin',
+        'AdminAuth'     => 'SleepingOwl\AdminAuth\Facades\AdminAuth',
+        'Column'        => 'SleepingOwl\Admin\Columns\Column',
+        'ColumnFilter'  => 'SleepingOwl\Admin\ColumnFilters\ColumnFilter',
+        'Filter'        => 'SleepingOwl\Admin\Filter\Filter',
+        'AdminDisplay'  => 'SleepingOwl\Admin\Display\AdminDisplay',
+        'AdminForm'     => 'SleepingOwl\Admin\Form\AdminForm',
+        'AdminTemplate' => 'SleepingOwl\Admin\Templates\Facade\AdminTemplate',
+        'FormItem'      => 'SleepingOwl\Admin\FormItems\FormItem',
 	],
 
 ];
